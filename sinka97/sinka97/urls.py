@@ -22,6 +22,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home_view,name='home'),
+    path('googlee3d9d4182d6536a0.html',views.site_ownership_verification,name='site-ownership-verification'),
     path('portfolio/',include('portfolio.urls')),
     path('totolyzer/', include('totolyzer.urls')),
 ] 

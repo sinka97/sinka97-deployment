@@ -7,3 +7,6 @@ def home_view(request):
 
 def my_custom_page_not_found_view(request,exception):
     return render(request,'404.html',status=404)
+
+def site_ownership_verification(request):
+    return render(request,'googlee3d9d4182d6536a0.html')
