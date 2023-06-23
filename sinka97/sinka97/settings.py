@@ -45,21 +45,23 @@ INSTALLED_APPS = [
     'totolyzer',
 ]
 
+
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_plotly_dash.middleware.BaseMiddleware',
-    'django_plotly_dash.middleware.ExternalRedirectionMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'django_plotly_dash.middleware.BaseMiddleware',
+        'django_plotly_dash.middleware.ExternalRedirectionMiddleware',
 ]
 
 
-
+CORS_ALLOW_ALL_ORIGINS = ['http://18.138.130.59','http://13.213.28.195','http://www.sinka97.com','http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://18.138.130.59','http://13.213.28.195','http://www.sinka97.com','http://127.0.0.1']
 
 
 ROOT_URLCONF = 'sinka97.urls'
