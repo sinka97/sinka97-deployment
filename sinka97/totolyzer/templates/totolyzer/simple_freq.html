@@ -1,0 +1,106 @@
+{% extends 'non_blog_base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .card-custom {
+      height: 100%;
+      padding: 10px;  /* padding around the cards */
+  }
+  
+  /* Target screens smaller than 576px */
+  @media (max-width: 575.98px) {
+      .card-title {
+          font-size: 14px;  /* adjust as needed */
+      }
+  }
+</style>
+  
+
+<div class="container">
+
+    <div class="row justify-content-center mb-2">
+      <div class="col-md-6 d-flex align-items-center">
+          {% if end_date %}
+            <h1 style="font-size: 0.8rem;">
+              <a href="{% url 'totolyzer:chart-simple_freq' %}" class="btn btn-secondary btn-font-size-sm">Displaying graphs with data from {{ start_date }} to {{ end_date }}. Click here to reset.</a>
+            </h1>
+          {% else %}
+            <h1 style="font-size: 0.8rem;">
+              <a href="{% url 'totolyzer:chart-simple_freq' %}" class="btn btn-secondary btn-font-size-sm">Displaying graphs with data from 2014-10-07. Click here to reset.</a>
+            </h1>
+          {% endif %}
+          
+      </div>
+      <div class="col-md-6 justify-content-center">
+        <form method="GET" action="{% url 'totolyzer:chart-simple_freq' %}" class="d-flex">
+          <div class="input-group">
+            <span class="input-group-text">Start</span>
+            {{ form.start_date }}
+          </div>
+          <div class="input-group mx-2">
+            <span class="input-group-text">End</span>
+            {{ form.end_date }}
+          </div>
+          <button type="submit" class="btn btn-primary btn-font-size-sm">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="#" class="card-custom">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Simple Frequencies</h5>
+                  </div>
+              </div>
+          </a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="#" class="card-custom">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Best Pairs</h5>
+                  </div>
+              </div>
+          </a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="#" class="card-custom">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Frequent On Days</h5>
+                  </div>
+              </div>
+          </a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <a href="#" class="card-custom">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Frequent On Days</h5>
+                  </div>
+              </div>
+          </a>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6">
+          <div class="mt-4">
+              {{ chart3|safe }}
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mt-4">
+              {{ chart4|safe }}
+          </div>
+        </div>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock content %}

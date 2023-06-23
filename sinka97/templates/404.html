@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 d-flex  align-items-center">
+      <img src="{% static 'portfolio/page_not_found.png' %}" class="img-fluid">
+    </div>
+    <div class="col-md-6 d-flex  align-items-center">
+        <h1 class="display-6 fw-bold">I am sorry, this page has not yet been implemented or does not exist.</h1>
+    </div>
+  </div>
+</div>
+{% endblock %}

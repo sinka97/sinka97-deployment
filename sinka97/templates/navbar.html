@@ -1,0 +1,48 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'portfolio/sinka97_segoe_script_white.png' %}" width="100" height="30" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'portfolio:about-me' %}">
+            About Me
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'portfolio:my-portfolio' %}">
+            My Portfolio
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Other Works
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'totolyzer:chart-simple_freq' %}">Totolyzer</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/NeoVsPos">Neo4j vs Postgres</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/EvertoniansRemembered">Evertonians Remembered</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.linkedin.com/in/sinka97/">
+            LinkedIn</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/sinka97">
+            <img src="{% static 'portfolio/github-mark-white.png' %}" width="20" height="20" alt="">
+            GitHub
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

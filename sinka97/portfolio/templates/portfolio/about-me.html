@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato&display=swap');
+    .motto-heading {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .motto-font {
+        font-family: 'Lato', sans-serif;
+        font-size: 3.25rem;
+        text-align: center;
+    }
+
+    .custom-img-size-school-logos {
+        width: 100%;
+        height: 150px;
+        object-fit: contain;
+      }
+
+    .custom-img-size-interests {
+    width: 150px;
+    height: 150px;
+    align-self: center;
+    }
+
+</style>
+
+<div class="h-100 p-3 mb-4 bg-white rounded-3 px-4 py-2">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="motto-heading">My Motto</h1>
+            <p class="motto-font">
+                "To live... is to be remembered."
+            </p>
+            <p class="text-center fs-6">
+                <span class="fw-bold">What it means:</span> Be bold, make memories, build a legacy.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="bg-dark rounded-3 px-4 py-2">
+    <div class="container-fluid py-2">
+        <h1 class="text-center text-light fw-bold" style="font-size: 1.8rem;">Academic History</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 d-flex">
+            <div class="card mb-4 w-100">
+                <img class="card-img-top img-fluid custom-img-size-school-logos" src="{% static 'portfolio/smu_logo.png' %}" alt="Singapore Management University">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="card-title display-6 fw-bold" style="font-size: 1rem;">Singapore Management University</h2>
+                    <h2 class="display-6" style="font-size: 1rem;">Bachelor of Science, Information Systems</h2>
+                    <ul class="card-text flex-grow-1" style="font-size: 0.8rem;">
+                        <li>Smart-City Management & Technology Major</li>
+                        <li>Public Policy & Public Management Major</li>
+                        Award: High Merit
+                    </ul>                    
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 d-flex">
+            <div class="card mb-4 w-100">
+                <img class="card-img-top img-fluid custom-img-size-school-logos" src="{% static 'portfolio/pjc_logo.png' %}" alt="Pioneer Junior College">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="card-title display-6 fw-bold" style="font-size: 1rem;">Pioneer Junior College</h2>
+                    <h2 class="display-6" style="font-size: 1rem;">GCE A' Levels</h2>
+                        <ul class="card-text flex-grow-1" style="font-size: 0.8rem;">
+                            <li>H2 Physics</li>
+                            <li>H2 Mathematics</li>
+                            <li>H2 Economics</li>
+                            <li>H1 China Studies in English</li>
+                            <li>H1 Project Work</li>
+                            <li>H1 General Paper</li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 d-flex">
+            <div class="card mb-4 w-100">
+                <img class="card-img-top img-fluid custom-img-size-school-logos" src="{% static 'portfolio/cwss_logo.png' %}" alt="Commonwealth Secondary School">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="card-title display-6 fw-bold" style="font-size: 1rem;">Commonwealth Secondary School</h2>
+                    <h2 class="display-6" style="font-size: 1rem;">GCE O' Levels</h2>
+                    <ul class="card-text flex-grow-1" style="font-size: 0.8rem;">
+                        <li>English Language</li>
+                        <li>Combined Humanities</li>
+                        <li>Mathematics</li>
+                        <li>Additional Mathematics</li>
+                        <li>Physics</li>
+                        <li>Chemistry</li>
+                        <li>Economics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light border rounded-3 px-4 py-2 mt-4">
+    <div class="container-fluid py-2">
+        <h1 class="text-center fw-bold" style="font-size: 1.8rem;">Other Interests</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 d-flex">
+            <div class="card mb-4 w-100">
+                <img class="card-img-top rounded-circle custom-img-size-interests mt-4" src="{% static 'portfolio/pika_spca.jpeg' %}" alt="Pika from SPCA">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="card-title text-center display-6 fw-bold" style="font-size: 1rem;">Playing with dogs!</h2>
+                    <p class="card-text flex-grow-1" style="font-size: 0.8rem;">
+                        However... unfortunately I have a mild allergy to them, so I am unable to adopt one. I often volunteer at SPCA's dog shelter on my weekends.<br><br>
+                        Photo featured above is of Pika, a Frenchie Bull that is currently living in this shelter. If you love dogs and is able to care for a super energetic dog.     
+                    </p>
+                    <a href="https://spca.org.sg/animal/pika/" class="btn btn-outline-primary" role="button">Adopt Pika</a>      
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 d-flex">
+            <div class="card mb-4 w-100">
+                <img class="card-img-top rounded-circle custom-img-size-interests mt-4" src="{% static 'portfolio/travel_the_world.jpg' %}" alt="Travel The World">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="card-title text-center display-6 fw-bold" style="font-size: 1rem;">Travelling the world 🌍🌎🌏</h2>
+                    <p class="card-text flex-grow-1" style="font-size: 0.8rem;">
+                        I love travelling, experiencing different cultures and trying delicious delicacies from around the world.<br><br>
+                        Current countries visited: Myanmar, Singapore, Malaysia, People's Repulic of China, Republic of China (Taiwan), Indonesia, England, Scotland, Spain, Italy, Vatican City & Vietnam.<br><br>
+                        Next on the list is Mongolia! Can't wait 😆
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 d-flex">
+            <div class="card mb-4 w-100">
+                <img class="card-img-top rounded-circle custom-img-size-school-logos mt-4" src="{% static 'portfolio/everton_logo.png' %}" alt="Everton Logo">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="card-title text-center display-6 fw-bold" style="font-size: 1rem;">I love watching Football</h2>
+                    <p class="card-text flex-grow-1" style="font-size: 0.8rem;">
+                        Tough times for my favourite team right now... but tough times don't last, tough people do!<br>
+                        Ever since I visited Liverpool in 2019 and my Uber driver who was an avid supporter gave us a free ride to Goodison Park, I got to witness the passion of the Evertonians and the work that EiTC has been doing for the community. Needless to say, I fell in love with the club.<br><br>
+                        UP THE TOFFEES!!!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

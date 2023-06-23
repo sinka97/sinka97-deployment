@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="mb-4 bg-white rounded-3">
+    <h1 class="display-6 fw-bold mb-4">Work Experience</h1>
+    <div class="row">
+        <div class="col-md-2">
+            <img src="{% static 'portfolio/hyphen_group_logo.png' %}" class="img-fluid" alt="HyphenGroup Logo">
+        </div>
+        <div class="col-md-10">
+            <h2 class="display-6" style="font-size: 1.8rem;">Data Engineer Intern</h2>
+            <h3 class="text-muted" style="font-size: 1.2rem;">MAY 2021 - APR 2023 (2 Years)</h3>
+            <p class="fs-6">As an intern in the Analytics & Automation Team, I worked on many cross-functional projects with Hyphen's Regional Marketing Team and Data Engineering Team.<br>Some of my works include:</p>
+            <ul style="font-size: 0.8rem;">
+                <li>Designing, building and testing of a new Workflow Orchestration system (Prefect) for our existing ETL Processes</li>
+                <li>Transitioning the production scripts from the legacy AdWords API to the new Google Ads API</li>
+                <li>Building an ETL process using AWS Glue to ingest data from Google BigQuery into AWS Athena</li>
+                <li>Generating ad-hoc reporting tables as required for core business reporting</li>
+            </ul>    
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="{% static 'portfolio/smu_logo.png' %}" class="img-fluid" alt="Singapore Management University Logo">
+        </div>
+        <div class="col-md-10">
+            <h2 class="display-6" style="font-size: 1.8rem;">Teaching Assistant</h2>
+            <h3 class="text-muted" style="font-size: 1.2rem;">MAY 2021 - AUG 2021 (3 Months)</h3>
+            <p class="fs-6">As an assitant to my Professor conducting the Text Analytics and Applications (ISSS609) in Master of IT in Business (MITB) Programme.<br>My responsibilities were:</p>
+            <ul style="font-size: 0.8rem;">
+                <li>Preparing teaching resources (Python/Jupyter Notebooks as Labs)</li>
+                <li>Providing guidance to students with their Natural Language Processing/ Text Mining Projects</li>
+            </ul>    
+        </div>
+    </div>
+</div>
+
+<div class="mb-4 bg-white rounded-3">
+    <h1 class="display-6 fw-bold mb-4">Personal Projects</h1>
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="{% static 'portfolio/plotly_logo.png' %}" class="img-fluid" alt="Plotly Logo">
+        </div>
+        <div class="col-md-10">
+            <h2 class="display-6" style="font-size: 1.8rem;"><a href="{% url 'totolyzer:chart-simple_freq' %}">Totolyzer</a></h2>
+            <p class="fs-6">
+                A fun personal project, I built to practice my skills of data engineering and data analytics skills. The interactive dashboard allows users to study the trends and perform analysis through interactive graphs based on the Toto results data from Singapore pools.
+                The seed data for the historical toto results were obtained from <a href="https://en.lottolyzer.com/">https://en.lottolyzer.com/</a> as a csv file and ingested into a postgres database via a python script. Subsequent data is scraped daily from Singapore Pools website itself to enhance the database.
+                The dashboard is built using dash and plotly while the process of scheduled data ingestion is currently a work in progress with plans to integrate weather data in the future (Estimated to be completed 1st July 2023).
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="{% static 'portfolio/neo4j_logo.png' %}" class="img-fluid" alt="Neo4j Logo">
+        </div>
+        <div class="col-md-10">
+            <h2 class="display-6" style="font-size: 1.8rem;">Personalised Recommendations with Neo4j</h2>
+            <p class="fs-6">As part of my school's IS459–Big Data Architecture project, my team and I built and deployed a personalized recommendation system for a mock-website based on H&M.
+                I was in charge of modelling the H&M dataset into Neo4j's graph data model,
+                developing an ETL pipeline to perform batch processing of csv data from AWS S3 using pyspark scripts with AWS Glue which were scheduled to be ran daily for our data ingestion into our Neo4j graph database which was running on an AWS ec2 instance,
+                as well as writing cypher queries to retrieve recommendations from the neo4j graph database.
+                I also developed a backend system using Django and neomodel to display the capabilities of our recommendation system, through the react front-end my team built.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="{% static 'portfolio/django_postgre_logo.png' %}" class="img-fluid" alt="Django Postgre Logos">
+        </div>
+        <div class="col-md-10">
+            <h2 class="display-6" style="font-size: 1.8rem;">Early Detection of Dementia Visualized (EDODvis)</h2>
+            <p class="fs-6">As my Final Year Project for Singapore Management University, my team and I worked on a dashboard web application for Sengkang General Hospital's Sensors In-home for Elder Wellbeing (SINEW) team.
+                Our team implemented a Postgres database and a Django-React rest framework to transform the large amount of data from SINEW's sensors into beautiful dashboards on our React front-end.
+                I played the role of a back-end developer in this project, developing REST APIs as well as writing scripts to perform batch processing on new data ingested.
+                I am really proud of my team for completing this project as we managed to implement features beyond a dashboard that helped doctors with insights on patients, such as alerts for stakeholders during emergencies.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

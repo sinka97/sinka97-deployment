@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="mb-4 bg-white rounded-3">
+        <div class="row">
+            <div class="col-md-9">
+                <h1 class="display-6 fw-bold">👋 Hi, I am Thant Sin Khine Aung</h1>
+                <p class="fs-6">
+                    I have recently graduated from Singapore Management University with a degree in Information Systems 👨🏻‍💻.<br>
+                    My passion is in data engineering and I love building data pipelines and implementing ETL processes.<br><br>
+                    Please pardon me if you find this website to be ugly...<br>
+                    I am not great with web design and bootstrap is doing most of the heavy lifting for me.<br>
+                    However, my analytical skills and technical know-how with regards to data is pretty solid! 😉
+                </p>
+                <br><br>
+            </div>
+            <div class="col-md-3">
+                <img src="{% static 'portfolio/photo_of_me.jpg' %}" class="img-fluid rounded-circle" alt="sinka97">
+            </div>
+        </div>
+</div>
+
+<div class="row" style="margin-bottom: 0px;">
+    <div class="col-md-6 mb-4">
+        <div class="h-100 p-3 text-white bg-dark rounded-3">
+            <h2 class="card-title">About Me</h2>
+            <p>My motto in life that keeps me motivated, academic history, certifications and other interests outside of data engineering.</p>
+            <a href="{% url 'portfolio:about-me' %}" class="btn btn-outline-light" role="button">Find out more</a>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="h-100 p-3 bg-light border rounded-3">
+            <h2 class="card-title">Portfolio</h2>
+            <p>Details on my previous work/internship experiences and personal projects. Check it out to find out what I did and why I did it.</p>
+            <a href="{% url 'portfolio:my-portfolio' %}" class="btn btn-outline-secondary" role="button">See my portfolio</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
