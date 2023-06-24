@@ -59,8 +59,10 @@ MIDDLEWARE = [
 ]
 
 
-CORS_ALLOW_ALL_ORIGINS = ['http://18.138.130.59','http://13.213.28.195','http://www.sinka97.com','http://127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['http://18.138.130.59','http://13.213.28.195','http://www.sinka97.com','http://127.0.0.1']
+CORS_ORIGIN_WHITELIST = ['http://18.138.130.59','http://13.213.28.195','http://www.sinka97.com','http://127.0.0.1',
+                         'https://18.138.130.59','https://13.213.28.195','https://www.sinka97.com','https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://18.138.130.59','http://13.213.28.195','http://www.sinka97.com','http://127.0.0.1',
+                        'https://18.138.130.59','https://13.213.28.195','https://www.sinka97.com','https://127.0.0.1']
 
 
 ROOT_URLCONF = 'sinka97.urls'

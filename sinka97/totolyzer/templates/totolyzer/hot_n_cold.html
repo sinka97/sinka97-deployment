@@ -6,17 +6,17 @@
 <div class="d-flex flex-row mb-2">
   <div class="col-md-6 justify-content-end mb-2">
       {% if end_date %}
-        <a href="{% url 'totolyzer:chart-best_pairs' %}" class="btn btn-secondary btn-font-size-sm" style="font-size: 0.8rem;">
+        <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="btn btn-secondary btn-font-size-sm" style="font-size: 0.8rem;">
           <h1 style="font-size: 0.8rem;">Displaying graphs with data from {{ start_date }} to {{ end_date }}. Click here to reset.</h1>
         </a>
       {% else %}
-        <a href="{% url 'totolyzer:chart-best_pairs' %}" class="btn btn-secondary btn-font-size-sm" style="font-size: 0.8rem;">
+        <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="btn btn-secondary btn-font-size-sm" style="font-size: 0.8rem;">
           <h1 style="font-size: 0.8rem;">Displaying graphs with data from 2014-10-07. Click here to reset.</h1>
         </a>
       {% endif %}
   </div>
   <div class="col-md-6 justify-content-end mb-2">
-    <form method="GET" action="{% url 'totolyzer:chart-best_pairs' %}" class="d-flex">
+    <form method="GET" action="{% url 'totolyzer:chart-hot_n_cold' %}" class="d-flex">
       <div class="input-group">
         <span class="input-group-text" style="font-size: 0.8rem;">Start</span>
         {{ form.start_date }}
@@ -32,38 +32,22 @@
 
 <div class="list-group d-flex flex-row justify-content-start mb-2">
   <a href="{% url 'totolyzer:chart-simple_freq' %}" class="list-group-item list-group-item-action p-2">Winning Frequency</a>
-  <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="list-group-item list-group-item-action p-2">Hot & Cold Numbers</a>
-  <a href="{% url 'totolyzer:chart-best_pairs' %}" class="list-group-item list-group-item-action active p-2">Best Pairs</a>
+  <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="list-group-item list-group-item-action active p-2">Hot & Cold Numbers</a>
+  <a href="{% url 'totolyzer:chart-best_pairs' %}" class="list-group-item list-group-item-action p-2">Best Pairs</a>
   <a href="#" class="list-group-item list-group-item-action p-2">Coming Soon 1</a>
   <a href="#" class="list-group-item list-group-item-action p-2">Coming Soon 2</a>
 </div>
 
-
-<div class="row justify-content-center mt-4">
-  <!-- Best pairs heat map (Full Page) -->
+<!-- Hot Numbers & Cold Numbers (Side by Side) -->
+<div class="row justify-content-center mt-2">
   <div class="col-lg-6">
-    <div class="d-flex justify-content-center">
-      {{ best_pairs_chart|safe }}
+    <div class="mt-2">
+        {{ hot_chart|safe }}
     </div>
   </div>
-  <!-- Top 10 pairs -->
   <div class="col-lg-6">
-    <div class="card">
-      <div class="card-header">
-        <h2 class="text-center">Best Pairs For This Period</h2>
-      </div>
-      <div class="card-body">
-        <table class="table table-striped">
-          <tbody>
-            {% for pair in top_10_pairs %}
-              <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ pair.0 }} and {{ pair.1 }}: {{ pair.2 }} times</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+    <div class="mt-2">
+        {{ cold_chart|safe }}
     </div>
   </div>
 </div>

@@ -21,15 +21,15 @@
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Other Works
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Totolyzer
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'totolyzer:chart-simple_freq' %}">Totolyzer</a></li>
+            <li><a class="dropdown-item" href="{% url 'totolyzer:chart-simple_freq' %}">Simple Frequencies</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/NeoVsPos">Neo4j vs Postgres</a></li>
+            <li><a class="dropdown-item" href="{% url 'totolyzer:chart-simple_freq' %}">Best Pairs</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/EvertoniansRemembered">Evertonians Remembered</a></li>
+            <li><a class="dropdown-item" href="{% url 'totolyzer:chart-simple_freq' %}">Mean Analysis</a></li>
           </ul>
         </li>
         <li class="nav-item">

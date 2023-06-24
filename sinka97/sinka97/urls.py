@@ -27,4 +27,4 @@ urlpatterns = [
     path('totolyzer/', include('totolyzer.urls')),
 ] 
 
-handler404 = 'sinka97.views.my_custom_page_not_found_view'
+handler404 = 'sinka97.views.my_custom_page_not_found_view'  

@@ -1,0 +1,37 @@
+{% extends 'non_blog_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+        {% if end_date %}
+          <a href="{% url 'totolyzer:chart-simple_freq' %}" class="btn btn-secondary btn-font-size-sm" style="font-size: 0.8rem;">
+            <h1 style="font-size: 0.8rem;">No data from {{ start_date }} to {{ end_date }}. Click here to reset.</h1>
+          </a>
+        {% else %}
+          <a href="{% url 'totolyzer:chart-simple_freq' %}" class="btn btn-secondary btn-font-size-sm" style="font-size: 0.8rem;">
+            <h1 style="font-size: 0.8rem;">Error with dates chosen. Click here to reset.</h1>
+          </a>
+        {% endif %}
+    </div>
+    <div class="col-md-6 justify-content-center mb-2">
+      <form method="GET" action="{% url 'totolyzer:chart-simple_freq' %}" class="d-flex">
+        <div class="input-group">
+          <span class="input-group-text">Start</span>
+          {{ form.start_date }}
+        </div>
+        <div class="input-group mx-2">
+          <span class="input-group-text">End</span>
+          {{ form.end_date }}
+        </div>
+        <button type="submit" class="btn btn-primary btn-font-size-sm">Submit</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}
