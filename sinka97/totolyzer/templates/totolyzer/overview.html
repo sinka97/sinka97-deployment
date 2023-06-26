@@ -1,0 +1,162 @@
+{% extends 'non_blog_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+  <h1>Totolyzer | Is it truly random?</h1>
+</div>
+
+<div class="list-group mb-2">
+  <hr>
+  <div class="row">
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-overview' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded active text-center">Overview</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-simple_freq' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Winning Frequency</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Hot & Cold</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-best_pairs' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Best Pairs</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-mean_analysis' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="#" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
+    </div>
+  </div>
+  <hr>
+  
+</div>
+
+<div class="row">
+  <p>A project based on data from Singapore Pool's ToTo lottery. <b>Navigate using the buttons below to view different graphs with customisable date filters.</b> This is meant to be a fun personal project, note that lotteries are completely random and gambling is a risk. Please gamble responsibly. If you or someone you know is suffering from gambling addiction please contact the <a href="https://www.ncpg.org.sg/">National Problem Gambling</a> Helpline: <b>1800-6-668-668</b>.<br><br>
+    Currently a work in progress, the project aims to find meaningful trends in a field that is apparently random. Will it be successful? I doubt it :( . Why do I still do it? I thought it will be fun. Did I have fun? Not really, it was actually quite tedious, but what matters is I learnt a lot :) !
+  </p>
+</div>
+
+<!-- 1x1 Latest Winning Number table -->
+<div class="row justify-content-center">
+  <div class="col-8">
+    <table class="table">
+      <thead style="background-color: #59656f; color: #ffffff;">
+          <tr>
+              <th class="text-center" scope="col" colspan="2">Latest Results (Draw: {{ latest_draw_id }})</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="text-center" style="border-right: 1px solid #000000;"><b>Winning Numbers:</b></td>
+            <td class="text-center">{{ latest_winning_numbers|join:", " }}</td>
+          </tr>
+          <tr>
+            <td class="text-center" style="border-right: 1px solid #000000;"><b>Additional Number:</b></td>
+            <td class="text-center">{{ latest_additional_number }}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<!-- 2x1 table -->
+<div class="row">
+  <div class="col-md-6 d-flex align-items-center flex-column">
+    <table class="table">
+        <thead style="background-color: #FF579F; color: #ffffff;">
+            <tr>
+                <th class="text-center" scope="col">Most Frequent Numbers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{{ most_frequent_six|join:", " }}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  <div class="col-md-6 d-flex align-items-center flex-column">
+    <table class="table">
+      <thead style="background-color: #93e1d8; color: #000000;">
+          <tr>
+              <th class="text-center" scope="col">Least Frequent Numbers</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td class="text-center">{{ least_frequent_six|join:", " }}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- End of 2x1 table -->
+
+<!-- 3x1 table-->
+<div class="row">
+  <div class="col-md-4">
+    <table class="table">
+      <thead style="background-color: #420039; color: #ffffff;">
+          <tr>
+              <th class="text-center" scope="col" style="border-right: 1px solid #ffffff;">Expected</th>
+              <th class="text-center" scope="col">Average of Sum</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td class="text-center" style="border-right: 1px solid #000000;">150</td>
+              <td class="text-center">140</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <table class="table">
+      <thead style="background-color: #1b9aaa; color: #ffffff;">
+          <tr>
+            <th class="text-center" scope="col" style="border-right: 1px solid #ffffff;">Expected</th>
+            <th class="text-center" scope="col">Even Numbers per Draw</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="text-center" style="border-right: 1px solid #000000;">2.94</td>
+            <td class="text-center">3.3</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <table class="table">
+      <thead style="background-color: #e0ff4f; color: #000000;">
+          <tr>
+            <th class="text-center" scope="col" style="border-right: 1px solid #ffffff;">Expected</th>
+            <th class="text-center" scope="col">Odd Numbers per Draw</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="text-center" style="border-right: 1px solid #000000;">3.06</td>
+            <td class="text-center">2.7</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+
+  
+
+{% endblock content %}

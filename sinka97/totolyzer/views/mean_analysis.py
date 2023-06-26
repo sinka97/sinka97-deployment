@@ -25,7 +25,7 @@ def get_frequent_numbers(results):
     least_frequent_six = [item[0] for item in fields[:-6:-1]]
     return most_frequent_six,least_frequent_six
 
-def simple_freq_view(request):
+def mean_analysis_view(request):
     draw_dates = DrawDates.objects.all()
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
@@ -61,4 +61,4 @@ def simple_freq_view(request):
         'form': DateForm(),
         'start_date': start_date,
         'end_date': end_date}
-    return render(request, 'totolyzer/simple_freq.html', context)
+    return render(request, 'totolyzer/mean_analysis.html', context)

@@ -3,47 +3,100 @@
 
 {% block content %}
 
-<div class="d-flex flex-row mb-2">
-  <div class="col-md-6 justify-content-start mb-2">
-      {% if end_date %}
-        <a href="{% url 'totolyzer:chart-simple_freq' %}" class="btn btn-secondary btn-font-size-sm" style="font-size: 0.8rem;">
-          <h1 style="font-size: 0.8rem;">Displaying graphs with data from {{ start_date }} to {{ end_date }}. Click here to reset.</h1>
-        </a>
-      {% else %}
-        <a href="{% url 'totolyzer:chart-simple_freq' %}" class="btn btn-secondary btn-font-size-sm" style="font-size: 0.8rem;">
-          <h1 style="font-size: 0.8rem;">Displaying graphs with data from 2014-10-07. Click here to reset.</h1>
-        </a>
-      {% endif %}
-  </div>
-  <div class="col-md-6 justify-content-end mb-2">
-    <form method="GET" action="{% url 'totolyzer:chart-simple_freq' %}" class="d-flex">
-      <div class="input-group">
-        <span class="input-group-text" style="font-size: 0.8rem;">Start</span>
-        {{ form.start_date }}
-      </div>
-      <div class="input-group mx-2">
-        <span class="input-group-text" style="font-size: 0.8rem;">End</span>
-        {{ form.end_date }}
-      </div>
-      <button type="submit" class="btn btn-primary btn-font-size-sm">Submit</button>
-    </form>
-  </div>
+<div class="row">
+  <h1>Totolyzer | Is it truly random?</h1>
 </div>
 
-<div class="list-group d-flex flex-row justify-content-start">
-  <a href="{% url 'totolyzer:chart-simple_freq' %}" class="list-group-item list-group-item-action active p-2">Winning Frequency</a>
-  <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="list-group-item list-group-item-action p-2">Hot & Cold Numbers</a>
-  <a href="{% url 'totolyzer:chart-best_pairs' %}" class="list-group-item list-group-item-action p-2">Best Pairs</a>
-  <a href="#" class="list-group-item list-group-item-action p-2">Coming Soon 1</a>
-  <a href="#" class="list-group-item list-group-item-action p-2">Coming Soon 2</a>
-</div>
-
-<!-- Number of Times Won (Full Page) -->
-<div class="row justify-content-center mt-2">
-  <div class="col-lg-12">
-    <div class="mt-2">
-        {{ chart1|safe }}
+<div class="list-group mb-2">
+  <hr>
+  <div class="row">
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-overview' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Overview</a>
     </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-simple_freq' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded active text-center">Winning Frequency</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Hot & Cold</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-best_pairs' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Best Pairs</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-mean_analysis' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="#" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
+    </div>
+  </div>
+  <hr>
+</div>
+
+
+<div class="row mb-2">
+  <form method="GET" action="{% url 'totolyzer:chart-simple_freq' %}" class="col-md-12">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="input-group">
+          <span class="input-group-text d-flex">Start Date</span>
+          {{ form.start_date }}
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="input-group">
+          <span class="input-group-text d-flex">End Date</span>
+          {{ form.end_date }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 d-flex flex-wrap align-items-center">
+      <div class="d-flex flex-grow-1">
+        {% if end_date %}
+          <p class="mb-0 me-2">Displaying from {{ start_date }} to {{ end_date }}</p>
+        {% else %}
+          <p class="mb-0 me-2">Displaying from 2014-10-07</p>
+        {% endif %}
+      </div>
+      <div>
+        <a href="{% url 'totolyzer:chart-simple_freq' %}" class="btn btn-secondary me-2">Reset</a>
+      </div>
+      <div>
+        <button id="filter-btn" class="btn btn-primary btn-font-size-sm" type="submit">Filter</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div class="row">
+  <div class="col-md-3 d-flex align-items-center flex-column">
+      <table class="table">
+          <thead style="background-color: #FF0060; color: #ffffff;">
+              <tr>
+                  <th class="text-center" scope="col">Most Frequent Numbers</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="text-center">{{ most_frequent_six|join:", " }}</td>
+              </tr>
+          </tbody>
+      </table>
+      <table class="table">
+          <thead style="background-color: #0079FF; color: #ffffff;">
+              <tr>
+                  <th class="text-center" scope="col">Least Frequent Numbers</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="text-center">{{ least_frequent_six|join:", " }}</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+  <div class="col-md-9">
+      {{ simple_frequency_chart|safe }}
   </div>
 </div>
 

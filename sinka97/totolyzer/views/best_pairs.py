@@ -41,9 +41,19 @@ def best_pairs_view(request):
 
     # Reshape the DataFrame into a Series and sort
     s = co_occur.unstack().sort_values(ascending=False)
-    top_10_pairs = s[:10]
+    s.dropna(inplace=True)
     # Get the indices of the top 10 values as a list of tuples
-    top_10_pairs_list = [(pair[0].replace('has_','Number '),pair[1].replace('has_','Number '), int(co_occur.loc[pair])) for pair in top_10_pairs.index]
+    top_pairs_dict = {}
+    for pair,value in s.items():
+        if len(top_pairs_dict)==10:
+            break
+        first = pair[0].replace('has_','')
+        second = pair[1].replace('has_','')
+        if (second,first) in top_pairs_dict:
+            continue
+        else:
+            top_pairs_dict[(first,second)] = int(value)
+    top_pairs_list = [(key[0],key[1],value)for key,value in top_pairs_dict.items()]
 
     # Rename the columns and the index
     new_names = [str(i+1) for i in range(49)]
@@ -56,12 +66,21 @@ def best_pairs_view(request):
                     y=co_occur.index,
                     color_continuous_scale="reds")
     fig.update_coloraxes(showscale=False)
-    fig.update_layout(width=500, height=500)
+    fig.update_layout(width=500, height=500, autosize=False,
+                      xaxis_title=None,  # Remove x-axis label
+                      yaxis_title=None,  # Remove y-axis label
+                      margin=dict(
+                        l=10,  # left margin
+                        r=10,  # right margin
+                        b=10,  # bottom margin
+                        t=10,  # top margin
+                        pad=0  # padding
+                    ))
     best_pairs_chart = fig.to_html(full_html=False, config={'displayModeBar': False})
 
     context = {
         'best_pairs_chart': best_pairs_chart,
-        'top_10_pairs': top_10_pairs_list,
+        'top_pairs': top_pairs_list,
         'form': DateForm(),
         'start_date': start_date,
         'end_date': end_date}

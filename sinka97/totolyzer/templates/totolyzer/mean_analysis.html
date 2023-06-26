@@ -1,7 +1,6 @@
 {% extends 'non_blog_base.html' %}
 {% load static %}
 
-
 {% block content %}
 
 <div class="row">
@@ -21,20 +20,20 @@
       <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Hot & Cold</a>
     </div>
     <div class="col-sm-4 col-md-2">
-      <a href="{% url 'totolyzer:chart-best_pairs' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded active text-center">Best Pairs</a>
+      <a href="{% url 'totolyzer:chart-best_pairs' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Best Pairs</a>
     </div>
     <div class="col-sm-4 col-md-2">
-      <a href="{% url 'totolyzer:chart-mean_analysis' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
+      <a href="{% url 'totolyzer:chart-mean_analysis' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded active text-center">Mean Analysis</a>
     </div>
     <div class="col-sm-4 col-md-2">
-      <a href="#" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
+      <a href="#" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon 3</a>
     </div>
   </div>
   <hr>
 </div>
 
 <div class="row mb-2">
-  <form method="GET" action="{% url 'totolyzer:chart-best_pairs' %}" class="col-md-12">
+  <form method="GET" action="{% url 'totolyzer:chart-simple_freq' %}" class="col-md-12">
     <div class="row">
       <div class="col-md-6 mb-3">
         <div class="input-group">
@@ -54,11 +53,11 @@
         {% if end_date %}
           <p class="mb-0 me-2">Displaying from {{ start_date }} to {{ end_date }}</p>
         {% else %}
-          <p class="mb-0 me-2">Displaying graphs with data from 2014-10-07</p>
+          <p class="mb-0 me-2">Displaying from 2014-10-07</p>
         {% endif %}
       </div>
       <div>
-        <a href="{% url 'totolyzer:chart-best_pairs' %}" class="btn btn-secondary me-2">Reset</a>
+        <a href="{% url 'totolyzer:chart-simple_freq' %}" class="btn btn-secondary me-2">Reset</a>
       </div>
       <div>
         <button id="filter-btn" class="btn btn-primary btn-font-size-sm" type="submit">Filter</button>
@@ -68,34 +67,39 @@
 </div>
 
 
-<div class="row justify-content-center mt-4">
-  <!-- Best pairs heat map (Smaller Size) -->
-  <div class="col-lg-6 col-md-6 col-sm-12">
-    <div class="d-flex justify-content-center align-items-center">
-      {{ best_pairs_chart|safe }}
-    </div>
+<div class="row">
+  <div class="col-md-3 d-flex align-items-center flex-column">
+      <table class="table">
+          <thead style="background-color: #FF0060; color: #ffffff;">
+              <tr>
+                  <th class="text-center" scope="col">Most Frequent Numbers</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="text-center">{{ most_frequent_six|join:", " }}</td>
+              </tr>
+          </tbody>
+      </table>
+      <table class="table">
+          <thead style="background-color: #0079FF; color: #ffffff;">
+              <tr>
+                  <th class="text-center" scope="col">Least Frequent Numbers</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="text-center">{{ least_frequent_six|join:", " }}</td>
+              </tr>
+          </tbody>
+      </table>
   </div>
-
-  <div class="col-6">
-    <table class="table table-striped">
-      <thead style="background-color: #59656f; color: #ffffff;">
-          <tr>
-              <th class="text-center" scope="col" colspan="2">Top Frequent Pairs</th>
-          </tr>
-      </thead>
-      <tbody>
-        {% for pair in top_pairs %}
-        <tr>
-          <th scope="row" class="text-center">{{ forloop.counter }}</th>
-          <td>{{ pair.0 }} and {{ pair.1 }}: {{ pair.2 }} times</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="col-md-9">
+      {{ simple_frequency_chart|safe }}
   </div>
 </div>
 
-
+  
 
 
 {% endblock content %}
