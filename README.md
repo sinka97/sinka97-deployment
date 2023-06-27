@@ -2,7 +2,7 @@
 My portfolio website sinka97, containing some personal projects as django apps.
 Live deployment can be viewed [here](https://sinka97.com/).
 
-## [Portfolio Website](https://sinka97.com/portfolio/home/)
+## [Portfolio Website](https://sinka97.com/)
 A personal website containing information about me and my porfolio.
 Built with Django and Bootstrap.
 
