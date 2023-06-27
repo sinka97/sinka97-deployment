@@ -66,7 +66,7 @@ def best_pairs_view(request):
                     y=co_occur.index,
                     color_continuous_scale="reds")
     fig.update_coloraxes(showscale=False)
-    fig.update_layout(width=500, height=500, autosize=False,
+    fig.update_layout(width=450, height=450, autosize=False,
                       xaxis_title=None,  # Remove x-axis label
                       yaxis_title=None,  # Remove y-axis label
                       margin=dict(
