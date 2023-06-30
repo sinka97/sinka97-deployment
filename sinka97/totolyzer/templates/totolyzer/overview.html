@@ -17,24 +17,23 @@
       <a href="{% url 'totolyzer:chart-simple_freq' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Winning Frequency</a>
     </div>
     <div class="col-sm-4 col-md-2">
-      <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Hot & Cold</a>
-    </div>
-    <div class="col-sm-4 col-md-2">
       <a href="{% url 'totolyzer:chart-best_pairs' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Best Pairs</a>
     </div>
     <div class="col-sm-4 col-md-2">
-      <a href="{% url 'totolyzer:chart-mean_analysis' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
+      <a href="{% url 'totolyzer:chart-daily_breakdown' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Daily Breakdown</a>
     </div>
     <div class="col-sm-4 col-md-2">
-      <a href="#" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
+      <a href="{% url 'totolyzer:chart-monthly_breakdown' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Monthly Breakdown</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
     </div>
   </div>
   <hr>
-  
 </div>
 
 <div class="row">
-  <p>A data visualisation project based on data from Singapore Pool's Toto lottery results. <b>Navigate using the buttons below to view different graphs with customisable date filters.</b> This is meant to be a fun personal project, note that lotteries are completely random and gambling is a risk. Please gamble responsibly. If you or someone you know is suffering from gambling addiction please contact the <a href="https://www.ncpg.org.sg/">National Problem Gambling</a> Helpline: <b>1800-6-668-668</b>.<br><br>
+  <p>A data visualisation project based on data from Singapore Pool's Toto lottery results. <b>Navigate using the buttons below to view different graphs with customisable date filters. If the graph has a legend, clicking an item in the legend will remove it from view and double-clicking a legend will isolate only that view.</b> This is meant to be a fun personal project, note that lotteries are completely random and gambling is a risk. Please gamble responsibly. If you or someone you know is suffering from gambling addiction please contact the <a href="https://www.ncpg.org.sg/">National Problem Gambling</a> Helpline: <b>1800-6-668-668</b>.<br><br>
     Currently a work in progress, the project is meant to be an outlet for me to apply my different skills and techniques I have learnt over the years. If you have any feedbacks or suggestions please connect with me on <a href="https://www.linkedin.com/in/sinka97/">LinkedIn</a> or through my email provided in the footer.
   </p>
 </div>
@@ -96,67 +95,5 @@
   </div>
 </div>
 <!-- End of 2x1 table -->
-
-<!-- 3x1 table-->
-<div class="row">
-  <div class="col-md-4">
-    <table class="table">
-      <thead style="background-color: #420039; color: #ffffff;">
-          <tr>
-              <th class="text-center" scope="col" style="border-right: 1px solid #ffffff;">Expected</th>
-              <th class="text-center" scope="col">Average of Sum</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td class="text-center" style="border-right: 1px solid #000000;">150</td>
-              <td class="text-center">140</td>
-          </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-md-4">
-    <table class="table">
-      <thead style="background-color: #1b9aaa; color: #ffffff;">
-          <tr>
-            <th class="text-center" scope="col" style="border-right: 1px solid #ffffff;">Expected</th>
-            <th class="text-center" scope="col">Even Numbers per Draw</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-            <td class="text-center" style="border-right: 1px solid #000000;">2.94</td>
-            <td class="text-center">3.3</td>
-          </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-md-4">
-    <table class="table">
-      <thead style="background-color: #e0ff4f; color: #000000;">
-          <tr>
-            <th class="text-center" scope="col" style="border-right: 1px solid #ffffff;">Expected</th>
-            <th class="text-center" scope="col">Odd Numbers per Draw</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-            <td class="text-center" style="border-right: 1px solid #000000;">3.06</td>
-            <td class="text-center">2.7</td>
-          </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-
-  </div>
-</div>
-
-
-
-
-  
 
 {% endblock content %}

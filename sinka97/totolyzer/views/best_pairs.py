@@ -47,9 +47,13 @@ def best_pairs_view(request):
     for pair,value in s.items():
         if len(top_pairs_dict)==10:
             break
-        first = pair[0].replace('has_','')
-        second = pair[1].replace('has_','')
-        if (second,first) in top_pairs_dict:
+        first = int(pair[0].replace('has_',''))
+        second = int(pair[1].replace('has_',''))
+        if second<first:
+            temp = first
+            first = second
+            second = temp
+        if (first,second) in top_pairs_dict:
             continue
         else:
             top_pairs_dict[(first,second)] = int(value)

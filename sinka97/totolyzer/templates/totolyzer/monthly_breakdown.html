@@ -1,0 +1,146 @@
+{% extends 'non_blog_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+  <h1>Totolyzer | Is it truly random?</h1>
+</div>
+
+<div class="list-group mb-2">
+  <hr>
+  <div class="row">
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-overview' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Overview</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-simple_freq' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Winning Frequency</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-best_pairs' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Best Pairs</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-daily_breakdown' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Daily Breakdown</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-monthly_breakdown' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded active text-center">Monthly Breakdown</a>
+    </div>
+    <div class="col-sm-4 col-md-2">
+      <a href="{% url 'totolyzer:chart-hot_n_cold' %}" class="list-group-item list-group-item-action p-2 mb-2 rounded bg-dark text-white text-center">Coming Soon</a>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<div class="row mb-2">
+  <form method="GET" action="{% url 'totolyzer:chart-monthly_breakdown' %}" class="col-md-12">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="input-group">
+          <span class="input-group-text d-flex">Start Date</span>
+          {{ form.start_date }}
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="input-group">
+          <span class="input-group-text d-flex">End Date</span>
+          {{ form.end_date }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 d-flex flex-wrap align-items-center">
+      <div class="d-flex flex-grow-1">
+        {% if end_date %}
+          <p class="mb-0 me-2">Displaying from {{ start_date }} to {{ end_date }}</p>
+        {% else %}
+          <p class="mb-0 me-2">Displaying from 2014-10-07</p>
+        {% endif %}
+      </div>
+      <div>
+        <a href="{% url 'totolyzer:chart-monthly_breakdown' %}" class="btn btn-secondary me-2">Reset</a>
+      </div>
+      <div>
+        <button id="filter-btn" class="btn btn-primary btn-font-size-sm" type="submit">Filter</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div class="row">
+  <div class="col-md-4 d-flex align-items-center flex-column">
+    <table class="table">
+      <thead><tr><th class="text-center" scope="col" style="background-color: #FF0060; color: #ffffff;">Highest Month</th></tr></thead>
+      <tbody><tr><td class="text-center">{{ highest_sum_all_month }}</td></tr></tbody>
+    </table>
+    <table class="table">
+      <thead><tr><th class="text-center" scope="col" style="background-color: #5a5a5a; color: #ffffff;">Lowest Month</th></tr></thead>
+      <tbody><tr><td class="text-center">{{ lowest_sum_all_month }}</td></tr></tbody>
+    </table>
+    <table class="table">
+      <thead><tr><th class="text-center" scope="col" style="background-color: #489DB1; color: #ffffff;">Biggest Diff Odd & Even</th></tr></thead>
+      <tbody><tr><td class="text-center">{{ month_with_biggest_difference }}</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col-md-8">
+    {{ month_name_chart|safe }}
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-4 d-flex align-items-center flex-column">
+    <table class="table">
+      <thead>
+          <tr>
+            <th class="text-center" scope="col" style="background-color: #FF0060; color: #ffffff; border-right: 1px solid #ffffff;">Average Sum</th>
+            <th class="text-center" scope="col" style=" background-color: #5a5a5a; color: #ffffff;">Expected</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="text-center" style="border-right: 1px solid #000000;">{{ average_sum }}</td>
+            <td class="text-center">150.00</td>
+          </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <thead>
+          <tr>
+            <th class="text-center" scope="col" style="background-color: #0079FF; color: #ffffff; border-right: 1px solid #ffffff; ">Average Even</th>
+            <th class="text-center" scope="col" style="background-color: #5a5a5a; color: #ffffff;">Expected</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="text-center" style="border-right: 1px solid #000000;">{{ average_even }}</td>
+            <td class="text-center">75.00</td>
+            
+          </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col" style="background-color: #c6db28; color: #ffffff; border-right: 1px solid #ffffff; ">Average Odd</th>
+          <th class="text-center" scope="col" style="background-color: #5a5a5a; color: #ffffff;">Expected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center" style="border-right: 1px solid #000000;">{{ average_odd }}</td>
+          <td class="text-center">75.00</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <thead><tr><th class="text-center" scope="col" style="background-color: #5e28db; color: #ffffff;">Gap in May 2020</th></tr></thead>
+      <tbody><tr><td class="text-center">Singapore Pools Closed Due to Covid</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col-md-8">
+    {{ monthly_breakdown_chart|safe }}
+  </div>
+</div>
+
+{% endblock content %}
